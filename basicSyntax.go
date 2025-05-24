@@ -223,7 +223,34 @@ func main() {
 
 	//-----------------------------------------
 	// 9. Closures
+	// Description: Creates a function `nxtInput` that accumulates sum of (input + base)
 	//-----------------------------------------
+	nxtInput := intSum(5) // base = 5
+
+	fmt.Printf("%d\n", nxtInput(10))  // 0 + 10 + 5 = 15       // Output: 15
+	fmt.Printf("%d\n", nxtInput(100)) // 15 + 100 + 5 = 120    // Output: 120
+	fmt.Printf("%d\n", nxtInput(100)) // 120 + 100 + 5 = 225   // Output: 225
+	fmt.Printf("%d\n", nxtInput(0))   // 225 + 0 + 5 = 230     // Output: 230
+	fmt.Printf("%d\n", nxtInput(0))   // 230 + 0 + 5 = 235     // Output: 235
+
+	//-----------------------------------------
+	// 10. Recursion: Factorial
+	// Description: Computes factorial using recursion
+	//-----------------------------------------
+	fmt.Println("Factorial of 5 =", factorial(5)) // Output: Factorial of 5 = 120
+
+	//-----------------------------------------
+	// 11. Anonymous Function: Fibonacci
+	// Description: Recursive Fibonacci using anonymous function assignment
+	//-----------------------------------------
+	var anonymousFunc func(int) int
+	anonymousFunc = func(n int) int {
+		if n < 2 {
+			return n
+		}
+		return anonymousFunc(n-1) + anonymousFunc(n-2)
+	}
+	fmt.Println("10th Fibonacci number =", anonymousFunc(10)) // Output: 10th Fibonacci number = 55
 }
 
 // -----------------------------------------
@@ -247,4 +274,26 @@ func sum(numbers ...int) (int, int) {
 		result += numbers[i]
 	}
 	return result, len(numbers)
+}
+
+//-----------------------------------------
+// Closure Function
+// Returns a function that keeps a running total of a + b
+//-----------------------------------------
+func intSum(b int) func(a int) int {
+	i := 0
+	return func(a int) int {
+		i += a + b
+		return i
+	}
+}
+
+//-----------------------------------------
+// Recursive Factorial Function
+//-----------------------------------------
+func factorial(x int) int {
+	if x == 0 {
+		return 1
+	}
+	return x * factorial(x-1)
 }
