@@ -251,6 +251,45 @@ func main() {
 		return anonymousFunc(n-1) + anonymousFunc(n-2)
 	}
 	fmt.Println("10th Fibonacci number =", anonymousFunc(10)) // Output: 10th Fibonacci number = 55
+
+	//-----------------------------------------
+	// 12. Range over Built-in Types
+	//-----------------------------------------
+
+	// Description: Sum of elements in a slice
+	numbers := []int{4, 6, 3, 9, 34, 6}
+	sum := 0
+	for _, n := range numbers {
+		sum += n
+	}
+	fmt.Println("Sum:", sum) // Output: Sum: 62
+
+	// Description: Index-value iteration over a slice
+	for i, v := range numbers {
+		fmt.Printf("%d -> %d\n", i, v)
+		// Output:
+		// 0 -> 4
+		// 1 -> 6
+		// & so on.......
+	}
+
+	// Description: Iterating over a map (key-value pairs)
+	m := map[string]string{"fruit": "Mango", "vehicle": "Car"}
+	for k, v := range m {
+		fmt.Printf("%s -> %s\n", k, v)
+		// Output:
+		// fruit -> Mango
+		// vehicle -> Car
+	}
+
+	// Description: Prints index and Unicode code points (runes) of "Go"
+	for k, v := range "Go" {
+		fmt.Println(k, v)
+		// Output:
+		// 0 71  // 'G'
+		// 1 111 // 'o'
+	}
+
 }
 
 // -----------------------------------------
@@ -276,10 +315,10 @@ func sum(numbers ...int) (int, int) {
 	return result, len(numbers)
 }
 
-//-----------------------------------------
+// -----------------------------------------
 // Closure Function
 // Returns a function that keeps a running total of a + b
-//-----------------------------------------
+// -----------------------------------------
 func intSum(b int) func(a int) int {
 	i := 0
 	return func(a int) int {
@@ -288,9 +327,9 @@ func intSum(b int) func(a int) int {
 	}
 }
 
-//-----------------------------------------
+// -----------------------------------------
 // Recursive Factorial Function
-//-----------------------------------------
+// -----------------------------------------
 func factorial(x int) int {
 	if x == 0 {
 		return 1
