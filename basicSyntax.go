@@ -290,6 +290,25 @@ func main() {
 		// 1 111 // 'o'
 	}
 
+	//-----------------------------------------
+	// 12. Pointers
+	//-----------------------------------------
+	pointer := 1
+	fmt.Println("Assign value:", pointer)          // Output: Assign value: 1
+	fmt.Println("Assign value address:", &pointer) // Output: e.g., 0xc0000180a8
+
+	//-----------------------------------------
+	// Passing by value: original won't change
+	//-----------------------------------------
+	passByValue(pointer)
+	fmt.Println("After pass by value call:", pointer) // Output: After pass by value call: 1
+
+	//-----------------------------------------
+	// Passing by reference: original will change
+	//-----------------------------------------
+	passByReference(&pointer)
+	fmt.Println("After pass by reference call:", pointer) // Output: After pass by reference call: 5
+
 }
 
 // -----------------------------------------
@@ -335,4 +354,23 @@ func factorial(x int) int {
 		return 1
 	}
 	return x * factorial(x-1)
+}
+
+// -----------------------------------------
+// Function: passByValue
+// Description: Demonstrates that value is copied and original is unaffected
+// -----------------------------------------
+func passByValue(num int) {
+	fmt.Println("Address in pass by value:", &num) // Output: different address than main
+	num = 2                                        // Change won't affect original
+}
+
+// -----------------------------------------
+// Function: passByReference
+// Description: Modifies the original value using a pointer
+// -----------------------------------------
+func passByReference(num *int) {
+	fmt.Println("Address in Local pass by reference:", &num) // Output: different address than main
+	fmt.Println("Address in Main pass by reference:", &*num) // Output: same address as in main
+	*num = 5                                                 // Change will affect original
 }
